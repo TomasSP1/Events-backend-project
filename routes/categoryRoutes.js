@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-const {protectAdmin} = require('../middleware/adminAuthMiddleware')
+const {protectAdmin} = require('../middleware/adminAuthMiddleware');
 
 const {
   setCategory,
