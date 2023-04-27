@@ -9,7 +9,7 @@ const Favorite = mongoose.model(
         ref: "User",
         required: true,
       },
-      postId: {
+      eventId: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Event",
         required: true,
