@@ -4,28 +4,34 @@ const Event = mongoose.model(
   "Event",
   new mongoose.Schema(
     {
+      user: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: true,
+        ref: "User",
+      },
       title: {
         type: String,
         trim: true.valueOf,
         required: [true, "Please add a title"],
+      },
+      category: {
+        // type: mongoose.Schema.Types.ObjectId,
+        // ref: "Category",
+        type: String,
+        required: [true, "Please add a category"],
       },
       description: {
         type: String,
         trim: true.valueOf,
         required: [true, "Please add a description"],
       },
-      category: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "Category",
-        required: [true, "Please add a category"],
+      place: {
+        type: String,
+        required: [true, "Please add a place"],
       },
       date: {
         type: Date,
         required: [true, "Please add a date"],
-      },
-      place: {
-        type: String,
-        required: [true, "Please add a place"],
       },
       image: {
         type: String,
