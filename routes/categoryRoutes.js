@@ -1,5 +1,6 @@
 const express = require("express");
 const router = express.Router();
+const {protectAdmin} = require('../middleware/adminAuthMiddleware')
 
 const {
   setCategory,
@@ -22,11 +23,11 @@ const {
 router
   .route("/")
   .get(getCategories)
-  .post(setCategory);
+  .post(protectAdmin,setCategory);
 router
   .route("/:id")
-  .put(updateCategory)
-  .delete(deleteCategory)
+  .put(protectAdmin,updateCategory)
+  .delete(protectAdmin,deleteCategory)
 
 
 module.exports = router;
