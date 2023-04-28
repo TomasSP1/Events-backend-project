@@ -37,6 +37,10 @@ const Event = mongoose.model(
         type: String,
         required: [true, "Please add a image"],
       },
+      approved: {
+        type: Boolean,
+        default: false,
+      },
     },
     {
       timestamps: true,
