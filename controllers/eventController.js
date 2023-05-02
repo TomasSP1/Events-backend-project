@@ -13,7 +13,7 @@ const getEvents = asyncHandler(async (req, res) => {
 
 //========================== GET USER EVENTS ========================//
 // @desc Get events
-// @route GET /api/events
+// @route GET /api/events/user
 // @access PUBLIC
 const getUserEvents = asyncHandler(async (req, res) => {
   // kadangi .find({ user: req.user.id }) nurodyta user id, tai del to butina nurodyti headeryje userio token
