@@ -19,6 +19,9 @@ router
   .get(protect, getUserEvents)
   .post(protect, setEvent);
 router
+  .route("/user")
+  .get(protect, getUserEvents)
+router
   .route("/:id")
   .put(protect, updateEvent)
   .delete(protect, deleteEvent)
