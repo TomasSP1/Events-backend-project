@@ -10,6 +10,6 @@ const {
 } = require("../controllers/favoriteController");
 
 router.route("/").post(protect, setFavorite).get(protect, getUserFavorites);
-router.route("/:id").delete(protect, deleteFavorite).get(protect, getEventFavorites);
+router.route("/:id").delete(protect, deleteFavorite).get(getEventFavorites);
 
 module.exports = router;
