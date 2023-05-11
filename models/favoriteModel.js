@@ -4,12 +4,12 @@ const Favorite = mongoose.model(
   "Favorite",
   new mongoose.Schema(
     {
-      userId: {
+      user: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "User",
         required: true,
       },
-      eventId: {
+      event: {
         type: mongoose.Schema.Types.ObjectId,
         ref: "Event",
         type: String,
