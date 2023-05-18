@@ -3,6 +3,8 @@ const bcrypt = require("bcryptjs");
 const asyncHandler = require("express-async-handler");
 const User = require("../models/userModel");
 
+//======================== REGISTER USER ======================//
+
 // @desc Register new user
 // @route POST /api/users
 // @access PUBLIC
@@ -50,6 +52,8 @@ const registerUser = asyncHandler(async (req, res) => {
   }
 });
 
+//======================== LOGIN USER ======================//
+
 // @desc Login a user
 // @route POST /api/users/login
 // @access PUBLIC
@@ -66,6 +70,8 @@ const loginUser = asyncHandler(async (req, res) => {
       token: generateToken(user._id),
       role: user.role,
     });
+
+    localStorage.setItem("user", JSON.stringify(user));
   } else {
     res.status(400);
     throw new Error("Invalid credentials");
@@ -81,5 +87,5 @@ const generateToken = (id) => {
 
 module.exports = {
   registerUser,
-  loginUser
+  loginUser,
 };
