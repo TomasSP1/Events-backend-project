@@ -135,8 +135,6 @@ const deleteEvent = asyncHandler(async (req, res) => {
   }
 
   if (req.user.role === "admin" || event.user.toString() === req.user.id) {
-    console.log(event);
-
     await Event.deleteOne({ _id: req.params.id });
 
     res.status(200).json({ id: req.params.id });

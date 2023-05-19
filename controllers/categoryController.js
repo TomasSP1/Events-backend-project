@@ -7,8 +7,8 @@ const Category = require("../models/categoryModel");
 // @route GET /api/categories
 // @access PUBLIC
 const getCategories = asyncHandler(async (req, res) => {
-    const categories = await Category.find();
-    res.status(200).json(categories);
+  const categories = await Category.find();
+  res.status(200).json(categories);
 });
 
 //========================== SET CATEGORIES ========================//
@@ -16,15 +16,15 @@ const getCategories = asyncHandler(async (req, res) => {
 // @route POST /api/categories
 // @access PRIVATE
 const setCategory = asyncHandler(async (req, res) => {
-    if (!req.body.title) {
-      res.status(400);
-      // klases pagrindu kuriamas naujas objektas
-      throw new Error("Please add a required fields");
-    }
-    const category = await Category.create({
-      title: req.body.title,
-    });
-    res.status(200).json(category);
+  if (!req.body.title) {
+    res.status(400);
+    // klases pagrindu kuriamas naujas objektas
+    throw new Error("Please add a required fields");
+  }
+  const category = await Category.create({
+    title: req.body.title,
+  });
+  res.status(200).json(category);
 });
 
 //======================== UPDATE CATEGORY ======================//
@@ -32,26 +32,21 @@ const setCategory = asyncHandler(async (req, res) => {
 // @route PUT /api/categories/:id
 // @access PRIVATE
 const updateCategory = asyncHandler(async (req, res) => {
-    const category = await Category.findById(req.params.id);
-  
-    if (!category) {
-      res.status(400);
-      throw new Error("Category not found");
+  const category = await Category.findById(req.params.id);
+
+  if (!category) {
+    res.status(400);
+    throw new Error("Category not found");
+  }
+
+  const updateCategory = await Category.findByIdAndUpdate(
+    req.params.id,
+    req.body,
+    {
+      new: true,
     }
-  
-    // check for user
-    // if (!req.user) {
-    //   res.status(401);
-    //   throw new Error("User not found");
-    // }
-  
-    // if (req.user.role === "admin") {
-      // response turi grazinti atnaujinta category
-      const updateCategory = await Category.findByIdAndUpdate(req.params.id, req.body, {
-        new: true,
-      });
-      res.status(200).json(updateCategory);
-    // }
+  );
+  res.status(200).json(updateCategory);
 });
 
 //======================== DELETE CATEGORY ======================//
@@ -59,37 +54,21 @@ const updateCategory = asyncHandler(async (req, res) => {
 // @route DELETE /api/categories/:id
 // @access PRIVATE
 const deleteCategory = asyncHandler(async (req, res) => {
-    const category = await Category.findById(req.params.id);
-  
-    if (!category) {
-      res.status(400);
-      throw new Error("category not found");
-    }
-  
-    // check for user
-    // if (!req.user) {
-    //   res.status(401);
-    //   throw new Error("User not found");
-    // }
-  
-    // make sure the logged in user matches the event user
-    // if (req.user.role !== "admin") {
-    //   res.status(401);
-    //   throw new Error("User not authorized");
-    // }
-  
-    // if (req.user.role === "admin") {
-      console.log(category);
-  
-      await Category.deleteOne({ _id: req.params.id });
-  
-      res.status(200).json({ id: req.params.id });
-    // }
+  const category = await Category.findById(req.params.id);
+
+  if (!category) {
+    res.status(400);
+    throw new Error("category not found");
+  }
+
+  await Category.deleteOne({ _id: req.params.id });
+
+  res.status(200).json({ id: req.params.id });
 });
-  
-  module.exports = {
-    getCategories,
-    setCategory,
-    updateCategory,
-    deleteCategory,
-  };
+
+module.exports = {
+  getCategories,
+  setCategory,
+  updateCategory,
+  deleteCategory,
+};

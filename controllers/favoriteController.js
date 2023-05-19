@@ -1,6 +1,8 @@
 const asyncHandler = require("express-async-handler");
 const Favorite = require("../models/favoriteModel");
 
+//======================== SET FAVORITE ======================//
+
 // @desc POST favorites
 // @route POST /api/favorites
 // @access PRIVATE
@@ -19,6 +21,8 @@ const setFavorite = asyncHandler(async (req, res) => {
     throw new Error("Error, favorite failed to be added!");
   }
 });
+
+//======================== DELETE FAVORITE ======================//
 
 // @desc DELETE favorites
 // @route DELETE /api/favorites/:id
@@ -42,6 +46,8 @@ const deleteFavorite = asyncHandler(async (req, res) => {
   }
 });
 
+//======================== GET FAVORITES ======================//
+
 // @desc GET user favorites
 // @route Get /api/favorites/
 // @access PRIVATE
@@ -63,6 +69,8 @@ const getUserFavorites = asyncHandler(async (req, res) => {
     throw new Error("Failed to get favorites");
   }
 });
+
+//======================== GET SPECIAL FAVORITE ======================//
 
 // @desc GET Event Favorites
 // @route GET /api/favorites/:id
